@@ -2,17 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "pubspec.yaml",
+      "src": "build.sh",
       "use": "@vercel/static-build",
       "config": {
-        "installCommand": "if cd flutter; then git pull && cd .. ; else git clone https://github.com/flutter/flutter.git; fi && flutter/bin/flutter clean && flutter/bin/flutter config --enable-web && flutter/bin/flutter pub get",
-        "buildCommand": "flutter/bin/flutter build web --release",
-        "outputDirectory": "build/web"
+        "distDir": "build/web"
       }
     }
   ],
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/build/web/index.html" }
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
